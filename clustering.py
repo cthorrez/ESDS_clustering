@@ -1,9 +1,4 @@
 from sklearn.cluster import KMeans, SpectralClustering
-from sklearn.cluster import MeanShift, estimate_bandwidth
-from sklearn.cluster import AffinityPropagation
-from sklearn.datasets.samples_generator import make_blobs
-
-
 
 class Player:
     def __init__(self, kills, deaths, assists, cs):
@@ -11,8 +6,6 @@ class Player:
         self.deaths = deaths
         self.assists = assists
         self.cs = cs
-
-
 
 if __name__ == "__main__":
 
@@ -24,18 +17,9 @@ if __name__ == "__main__":
         fields = line.split(",")
         data.append([float(fields[1]), float(fields[3]), float(fields[4]), float(fields[4])])
         names.append(fields[0])
-        
 
-    
-    
-
-    #clus = MeanShift(bin_seeding=True)
-    #clus = KMeans(init='k-means++', n_clusters=5, n_init=100)
     clus = SpectralClustering(n_clusters=5,eigen_solver='arpack',affinity= "nearest_neighbors")
-    
-
     clus.fit(data)
-
     labels = clus.fit_predict(data)
 
     print len(labels)
@@ -57,4 +41,4 @@ if __name__ == "__main__":
 
 
     for x in range(biggest):
-        print boxes[0][x], "|",boxes[1][x],"|", boxes[2][x],"|", boxes[3][x],"|", boxes[4][x]
+        print boxes[0][x], "\t",boxes[1][x],"\t", boxes[2][x],"\t", boxes[3][x],"\t", boxes[4][x]
